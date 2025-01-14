@@ -1,0 +1,50 @@
+.hero {
+    flex: 1;
+    background: url('../../public/Hero.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .hero .content {
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  .hero .content h1 {
+    padding-top: 100px;
+    font-size: 64px;
+    font-weight:500;
+    margin-bottom: 10px;
+    font-family:'Times New Roman', Times, serif
+  }
+  
+  .hero .content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .hero .content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .hero .shop-now {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .hero .shop-now:hover {
+    background-color: black;
+    color: white;
+  }
+  
