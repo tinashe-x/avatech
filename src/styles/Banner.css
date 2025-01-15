@@ -1,0 +1,78 @@
+.banner {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-evenly; /* Space out content */
+  align-items: center; /* Vertically align content */
+  padding: 3rem;
+  width: calc(100% - 4rem); /* Adjust width to account for padding */
+  background-color: black;
+  height: 72vh;
+  box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.banner-background {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out content */
+  align-items: center; 
+  padding: 2rem;
+  background-color: white;
+  width: 100%;
+}
+
+
+.banner-content {
+  flex: 1; /* Allow text to take up available space */
+}
+
+.banner-content h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-family:'Times New Roman', Times, serif
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.banner-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: white;
+  width: 80%;
+  font-family:'Times New Roman', Times, serif
+}
+
+.banner-content {
+  flex: 1; /* Allow text to take up available space */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+}
+
+.cta2-button {
+  background-color: white;
+  color: black;
+  padding: 0.75rem 2rem;
+  font-size: small;
+  border: none;
+  cursor: pointer;
+  border-radius: 1px;
+  text-transform: uppercase;
+  margin-top: 4rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  align-self: flex-end; /* Move button to the right */
+}
+
+.cta2-button:hover {
+  background-color: #444;
+}
