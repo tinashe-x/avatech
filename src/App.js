@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import Preloader from './components/Preloader';
 import ComingSoon from './components/CommingSoon';
 import TemplateShowcase from './components/TemplateShowcase';
-
+import Footer from './components/Footer';
 
 
 function App() {
@@ -17,7 +17,7 @@ useEffect(() => {
   // Simulate a delay for loading resources (e.g., 3 seconds)
   const timeout = setTimeout(() => {
     setIsLoading(false); // Hide preloader after the delay
-  }, 3000);
+  }, 5000);
 
   return () => clearTimeout(timeout); // Cleanup the timeout
 }, []);
@@ -32,6 +32,7 @@ useEffect(() => {
       <Banner />
       <TemplateShowcase />
       <ComingSoon />
+      <Footer />
     </div>
   );
 }
