@@ -1,0 +1,66 @@
+.soon-offer {
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-color: #fff;
+}
+  
+  .soon-content {
+    justify-self: center;
+  }
+  
+  .soon-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 0.5rem; /* Decrease the space below the h1 */
+    margin-top: 0.5rem; /* Decrease the space above the h1 */
+  }
+
+  .soon-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center; /* Center text horizontally */
+  }
+
+  .announcement-icon {
+    font-size: 7rem; /* Make the icon bigger */
+    color: #000;
+    display: block;
+    margin-left: auto; /* Center the icon horizontally */
+    margin-right: auto; /* Center the icon horizontally */
+    margin-bottom: 0.1rem; /* Decrease the space below the icon */
+  }
+
+  .soon-button {
+    background-color: black;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 1px;
+    text-transform: uppercase;
+    margin-top: 4rem;
+    justify-content: center;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center content vertically */
+    margin-bottom: 3.2rem;
+    margin-left: auto; /* Center the button horizontally */
+    margin-right: auto; /* Center the button horizontally */
+  }
+
+  .tick-icon {
+    margin-right: 0.5rem; /* Add space to the right of the icon */
+  }
+
+  
+  .soon-button:hover {
+    background-color: #444;
+  }
+  
+  
+  

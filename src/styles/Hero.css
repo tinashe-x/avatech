@@ -1,6 +1,6 @@
 .hero {
     flex: 1;
-    background: url('../../public/Hero.jpg') no-repeat center center/cover;
+    background: url('../../public/Hero.jpg') no-repeat top center/cover;
     color: white;
     text-align: center;
     display: flex;
