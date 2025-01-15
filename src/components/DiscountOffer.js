@@ -4,6 +4,10 @@ import DiscountOfferImg from '../images/DiscountOfferImg.jpg';
 
 function DiscountOffer() {
   return (
+    <div>
+      <header className="header-container">
+          <h3 className="header-title">Build Your Future Today With AVA TECH.</h3>
+        </header>
     <section className="discount-offer">
       <div className="offer-content">
         <h2>E-COMMERCE WEBSITE</h2>
@@ -16,6 +20,7 @@ function DiscountOffer() {
         <img src={DiscountOfferImg} alt="E-Commerce Offer" />
       </div>
     </section>
+    </div>
   );
 }
 
