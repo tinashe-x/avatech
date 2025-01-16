@@ -1,39 +1,32 @@
 import React from 'react';
-import Navbar from './components/NavBar';
-import Hero from './components/Hero';
-import DiscountOffer from './components/DiscountOffer';
-import Banner from './components/Banner';
-import { useState, useEffect } from 'react';
-import Preloader from './components/Preloader';
-import ComingSoon from './components/CommingSoon';
-import TemplateShowcase from './components/TemplateShowcase';
-import Footer from './components/Footer';
+import HomePage from './Pages/HomePage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ProductPage from './Pages/ProductPage';
+import ContactPage from './Pages/ContactPage';
 
+// function App() {
 
+//   return (
+//     <div className="home">
+//       <HomePage />
+//     </div>
+//   );
+// }
+
+// export default App;
 function App() {
-
-  const [isLoading, setIsLoading] = useState(true);
-useEffect(() => {
-  // Simulate a delay for loading resources (e.g., 3 seconds)
-  const timeout = setTimeout(() => {
-    setIsLoading(false); // Hide preloader after the delay
-  }, 5000);
-
-  return () => clearTimeout(timeout); // Cleanup the timeout
-}, []);
-
-
   return (
-    <div className="home">
-      {isLoading ? <Preloader /> : null} 
-      <Navbar />
-      <Hero />
-      <DiscountOffer />
-      <Banner />
-      <TemplateShowcase />
-      <ComingSoon />
-      <Footer />
-    </div>
+    <Router>
+      <div className="home">
+        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Pages/HomePage" element={<HomePage />} />
+          <Route path="/Pages/ProductPage" element={<ProductPage />} />
+          <Route path="/Pages/ContactPage" element={<ContactPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

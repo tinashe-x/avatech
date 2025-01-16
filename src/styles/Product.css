@@ -1,0 +1,78 @@
+/* styles/Product.css */
+
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .product-text {
+    flex: 1;
+    max-width: 30%;
+    
+  }
+  
+  .product-title,
+  h1.product-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+
+  }
+  
+  .product-description,
+  p.product-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .product-includes-title,
+  h3product-includes-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black; /* Adds the line under the Includes heading */
+  }
+  
+  .product-includes ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .product-includes {
+    list-style:disc;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content); /* Creates two-column layout */
+    gap: 20px 20px; /* Adds spacing between rows and columns */
+    margin-top: 20px;
+    font-size: small;
+
+  }
+
+  .include-item li {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  
+  .product-image {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  
+  .product-image img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+  }
+  

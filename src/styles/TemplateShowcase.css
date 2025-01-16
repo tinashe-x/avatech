@@ -45,7 +45,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1; /* Ensure the image is behind other elements */
+    /* z-index: -1; Ensure the image is behind other elements */
 }
 
 .screen-image2 {
@@ -55,7 +55,7 @@
     position: relative;
     bottom: 0;
     left: -11.2%; /* Move the image to the left */
-    z-index: -1; /* Ensure the image is behind other elements */
+    /* z-index: -1; Ensure the image is behind other elements */
 }
 
 
