@@ -6,6 +6,7 @@ const ProductComponent = ({ title, description, includes, image }) => {
     <div className="product-container">
       <div className="product-text">
         <h1 className="product-title">{title}</h1>
+        <h3 className="product-includes-title">Description</h3>
         <p className="product-description">{description}</p>
         <h3 className="product-includes-title">Includes</h3>
         <ul className="product-includes">

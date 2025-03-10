@@ -9,7 +9,7 @@ const ProductPage = () => {
   const productDetails = {
     title: "E-Commerce Web Package",
     description:
-      `Description Our e-commerce web package is the perfect solution for businesses looking to establish a strong online presence.\nWith our easy-to-use platform, you can quickly and easily create a professional website to showcase your products and services.`,
+      `Our e-commerce web package is the perfect solution for businesses looking to establish a strong online presence.\nWith our easy-to-use platform, you can quickly and easily create a professional website to showcase your products and services.`,
     includes: [
       "Customizable Website Template",
       "Add Your Branding",
