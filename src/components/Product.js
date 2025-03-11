@@ -1,7 +1,9 @@
+// src/components/ProductComponent.js
 import React from "react";
 import "../styles/Product.css";
+import { Link } from 'react-router-dom';
 
-const ProductComponent = ({ title, description, includes, image }) => {
+const ProductComponent = ({ title, description, includes, image, productId }) => {
   return (
     <div className="product-container">
       <div className="product-text">
@@ -16,6 +18,7 @@ const ProductComponent = ({ title, description, includes, image }) => {
             </li>
           ))}
         </ul>
+        <Link to={`/product/${productId}`}>View Details</Link>
       </div>
       <div className="product-image">
         <img src={image} alt={title} />

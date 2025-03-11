@@ -4,6 +4,7 @@ import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/Product.css";
 import DiscountOfferImg from '../images/DiscountOfferImg.jpg';
+import ProductList from "../components/ProductList";
 
 const ProductPage = () => {
   const productDetails = {
@@ -30,7 +31,9 @@ const ProductPage = () => {
         includes={productDetails.includes}
         image={productDetails.image}
       />
+      <ProductList />
       <Footer />
+
     </div>
   );
 };

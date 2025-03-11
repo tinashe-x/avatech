@@ -6,7 +6,7 @@ function Navbar() {
     <header className="navbar">
       <nav className="nav-menu left">
         <ul>
-          <li><a href="../Pages/HomePage">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="#about">About</a></li>
         </ul>
       </nav>
@@ -15,9 +15,9 @@ function Navbar() {
       </div>
       <nav className="nav-menu right">
         <ul>
-          <li><a href="../Pages/ProductPage">Products</a></li>
-          <li><a href="../Pages/ContactPage">Contact</a></li>
-          <li><a href="../Pages/CheckoutPage">Checkout</a></li>
+          <li><a href="/product">Products</a></li>
+          <li><a href="/contact-us">Contact</a></li>
+          <li><a href="/checkout">Checkout</a></li>
         </ul>
       </nav>
     </header>

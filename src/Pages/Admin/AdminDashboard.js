@@ -1,12 +1,16 @@
-// src/Pages/AdminDashboard.js
 import React, { useState, useEffect } from 'react';
 import { getProducts, addProduct, updateProduct, deleteProduct } from '../../services/productService';
 import '../../styles/Admin/AdminDashboard.css';
 
-
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ name: '', price: '' });
+  const [newProduct, setNewProduct] = useState({
+    title: '',
+    description: '',
+    includes: '',
+    image: null, // File object
+    price: ''
+  });
   const [editingProduct, setEditingProduct] = useState(null);
 
   useEffect(() => {
@@ -24,18 +28,47 @@ const AdminDashboard = () => {
 
   const handleAddProduct = async () => {
     try {
-      const addedProduct = await addProduct(newProduct);
+      const formData = new FormData();
+      formData.append('title', newProduct.title);
+      formData.append('description', newProduct.description);
+      formData.append('includes', newProduct.includes);
+      formData.append('price', newProduct.price);
+      if (newProduct.image) {
+        formData.append('image', newProduct.image);
+      }
+  
+      // Log the FormData contents
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+  
+      const addedProduct = await addProduct(formData);
       setProducts([...products, addedProduct]);
-      setNewProduct({ name: '', price: '' });
+      setNewProduct({
+        title: '',
+        description: '',
+        includes: '',
+        image: null,
+        price: ''
+      });
     } catch (error) {
       console.error('Error adding product:', error);
     }
   };
-
+  
   const handleUpdateProduct = async (product) => {
     try {
-      const updated = await updateProduct(product);
-      setProducts(products.map(p => (p.id === updated.id ? updated : p)));
+      const formData = new FormData();
+      formData.append('title', product.title);
+      formData.append('description', product.description);
+      formData.append('includes', product.includes);
+      formData.append('price', product.price);
+      if (product.image) {
+        formData.append('image', product.image);
+      }
+
+      const updatedProduct = await updateProduct(product.id, formData);
+      setProducts(products.map(p => (p.id === updatedProduct.id ? updatedProduct : p)));
       setEditingProduct(null);
     } catch (error) {
       console.error('Error updating product:', error);
@@ -59,23 +92,47 @@ const AdminDashboard = () => {
         {products.map(product => (
           <li key={product.id}>
             {editingProduct && editingProduct.id === product.id ? (
-              <div>
-                <input 
-                  type="text" 
-                  value={editingProduct.name} 
-                  onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
+              <div className="edit-product">
+                <input
+                  type="text"
+                  value={editingProduct.title}
+                  onChange={(e) => setEditingProduct({ ...editingProduct, title: e.target.value })}
+                  placeholder="Title"
                 />
-                <input 
-                  type="number" 
-                  value={editingProduct.price} 
+                <input
+                  type="text"
+                  value={editingProduct.description}
+                  onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })}
+                  placeholder="Description"
+                />
+                <input
+                  type="text"
+                  value={editingProduct.includes}
+                  onChange={(e) => setEditingProduct({ ...editingProduct, includes: e.target.value })}
+                  placeholder="Includes (comma separated)"
+                />
+                <input
+                  type="file"
+                  onChange={(e) => setEditingProduct({ ...editingProduct, image: e.target.files[0] })}
+                />
+                <input
+                  type="number"
+                  value={editingProduct.price}
                   onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
+                  placeholder="Price"
                 />
                 <button onClick={() => handleUpdateProduct(editingProduct)}>Save</button>
                 <button onClick={() => setEditingProduct(null)}>Cancel</button>
               </div>
             ) : (
-              <div>
-                {product.name} - ${product.price}
+              <div className="display-product">
+                <strong>{product.title}</strong>
+                <p>{product.description}</p>
+                <p>Includes: {product.includes}</p>
+                <p>Price: ${product.price}</p>
+                {product.image && (
+                  <img src={product.image} alt={product.title} style={{ maxWidth: '100px' }} />
+                )}
                 <button onClick={() => setEditingProduct(product)}>Edit</button>
                 <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
               </div>
@@ -84,19 +141,42 @@ const AdminDashboard = () => {
         ))}
       </ul>
       <h2>Add New Product</h2>
-      <input 
-        type="text" 
-        placeholder="Name" 
-        value={newProduct.name} 
-        onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-      />
-      <input 
-        type="number" 
-        placeholder="Price" 
-        value={newProduct.price} 
-        onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-      />
-      <button onClick={handleAddProduct}>Add Product</button>
+      <div className="add-product">
+        <input
+          id='Title'
+          type="text"
+          placeholder="Title"
+          value={newProduct.title}
+          onChange={(e) => setNewProduct({ ...newProduct, title: e.target.value })}
+        />
+        <input
+        id='Description'
+          type="text"
+          placeholder="Description"
+          value={newProduct.description}
+          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+        />
+        <input
+        id='Includes'
+          type="text"
+          placeholder="Includes (comma separated)"
+          value={newProduct.includes}
+          onChange={(e) => setNewProduct({ ...newProduct, includes: e.target.value })}
+        />
+        <input
+        id='Image'
+          type="file"
+          onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })}
+        />
+        <input
+        id='Price'
+          type="number"
+          placeholder="Price"
+          value={newProduct.price}
+          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+        />
+        <button onClick={handleAddProduct}>Add Product</button>
+      </div>
     </div>
   );
 };
