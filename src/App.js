@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HomePage from './Pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ProductPage from './Pages/ProductPage';
 import ContactPage from './Pages/ContactPage';
 import CheckoutPage from './Pages/CheckoutPage';
 // import ProductList from './Pages/ProductList';
@@ -25,11 +24,10 @@ function App() {
     <Router>
       <div className="home">
       <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product" element={<ProductPage />} />	
+          <Route path="/home" element={<HomePage />} />
           <Route path="/products" element={<ProductDetails />} />
           <Route path="/products/:id" element={<ProductDetails products={product} />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>

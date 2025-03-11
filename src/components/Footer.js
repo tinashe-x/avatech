@@ -21,7 +21,7 @@ return (
                     <ul>
                         <li>Gauteng, South Africa</li>
                         <li><a href="mailto:avatechinfosystems@gmail.com">avatechinfosystems@gmail.com</a></li>
-                        <li>(-27)-74-211-9195</li>
+                        <li>(+27)-60-948-9794</li>
                     </ul>
                 <div className="col-md-3">
                     <h3>Follow us</h3>

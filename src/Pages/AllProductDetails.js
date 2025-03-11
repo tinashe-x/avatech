@@ -5,8 +5,20 @@ import { getProducts } from '../services/productService';
 import '../styles/Product.css';
 import NavBar from '../components/NavBar';  
 import Footer from '../components/Footer';
+import Preloader from '../components/Preloader';
 
 const AllProductDetails = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+      const timeout = setTimeout(() => {
+          setIsLoading(false);
+      }, 5000);
+
+      return () => clearTimeout(timeout);
+  }, []);
+
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -21,12 +33,14 @@ const AllProductDetails = () => {
     fetchData();
   }, []);
 
-  if (!products.length) {
+
+  if (!products.length && !isLoading) {
     return <div>No products available</div>;
   }
 
   return (
     <div>
+      {isLoading ? <Preloader /> : null}
       <NavBar />
     <div className="all-products">
       {products.map(product => (
@@ -37,7 +51,7 @@ const AllProductDetails = () => {
           includes={Array.isArray(product.includes) ? product.includes : product.includes.split(',')}
           image={product.image}
           productId={product.id}
-          showLink={false}
+          showLink={true}
         />
       ))}
     </div>

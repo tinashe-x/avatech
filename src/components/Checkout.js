@@ -32,7 +32,7 @@ const Checkout = () => {
         ))}
         <hr />
         <div className="order-total">
-          <strong>Total: ${totalAmount.toFixed(2)}</strong>
+          <strong>Total: R{totalAmount.toFixed(2)}</strong>
         </div>
       </div>
       <PaymentForm 

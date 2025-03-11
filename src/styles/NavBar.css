@@ -46,6 +46,18 @@
   .nav-menu ul li a:hover {
     text-decoration: underline;
   }
+
+  .cart-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    
+  }
+  
+  .cart-icon-button:hover {
+    opacity: 0.8;
+  }
   
   .logo {
     display: flex;
