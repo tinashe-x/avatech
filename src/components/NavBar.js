@@ -17,6 +17,7 @@ function Navbar() {
         <ul>
           <li><a href="../Pages/ProductPage">Products</a></li>
           <li><a href="../Pages/ContactPage">Contact</a></li>
+          <li><a href="../Pages/CheckoutPage">Checkout</a></li>
         </ul>
       </nav>
     </header>

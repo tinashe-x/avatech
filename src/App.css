@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.checkout, .payment-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.order-summary .order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .checkout, .payment-form {
+    padding: 10px;
+  }
+}
+
