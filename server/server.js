@@ -1,9 +1,19 @@
-// server/server.js
-
+const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const Product = require('./models/Product'); // Import the Product model
 
-// Configure storage
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://avatechinfosystems:440Hz01$@avatech-cluster.4rxu1.mongodb.net/?retryWrites=true&w=majority&appName=AvaTech-Cluster', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error(err));
+
+// Configure storage for image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -13,79 +23,101 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
-
 const upload = multer({ storage });
-const express = require('express');
-const cors = require('cors');
-const app = express();
 
-app.use('/uploads', express.static('uploads'));
+const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-
-
-// In-memory product store
-// server/server.js
+app.use('/uploads', express.static('uploads'));
 
 // GET all products
-app.get('/api/products', (req, res) => {
-  res.json(products);
+app.get('/api/products', async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// Example in server/server.js
-app.post('/api/products', upload.single('image'), (req, res) => {
+// GET a product by productId
+app.get('/api/products/:productId', async (req, res) => {
+  const { productId } = req.params;
 
+  try {
+    const product = await Product.findOne({ productId });
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST create a new product (with image upload)
+app.post('/api/products', upload.single('image'), async (req, res) => {
   const { title, description, includes, price } = req.body;
   
-  // Validate required fields (image is optional if you want)
+  // Validate required fields
   if (!title || !description || !includes || !price) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
   
-  // Create a new product object with the uploaded image path
-  const newProduct = {
-    id: Date.now(),
+  const newProduct = new Product({
+    productId: Date.now().toString(), // Generate a unique productId as a string
     title,
     description,
     includes: includes.split(',').map(item => item.trim()),
     image: req.file ? `http://localhost:5000/uploads/${req.file.filename}` : '',
-    price: parseFloat(price),
-  };
+    price: parseFloat(price)
+  });
 
-  products.push(newProduct);
-  res.status(201).json(newProduct);
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
-
-
-// PUT update a product
-app.put('/api/products/:id', (req, res) => {
-  const productId = parseInt(req.params.id);
-  let product = products.find(p => p.id === productId);
-  if (!product) return res.status(404).json({ error: 'Product not found' });
-
-  // Update each field as needed
+// PUT update a product by productId
+app.put('/api/products/:productId', async (req, res) => {
+  const productId = req.params.id;
   const { title, description, includes, image, price } = req.body;
-  product = { 
-    ...product, 
-    title: title || product.title, 
-    description: description || product.description, 
-    includes: includes || product.includes, 
-    image: image || product.image, 
-    price: price || product.price 
-  };
-
-  products = products.map(p => (p.id === productId ? product : p));
-  res.json(product);
+  
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(
+      { productId },
+      {
+        title,
+        description,
+        // Only update includes if provided (and split into an array)
+        ...(includes && { includes: includes.split(',').map(item => item.trim()) }),
+        image,
+        price
+      },
+      { new: true, runValidators: true }
+    );
+    if (!updatedProduct) return res.status(404).json({ error: 'Product not found' });
+    res.json(updatedProduct);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
-// DELETE a product
-app.delete('/api/products/:id', (req, res) => {
-  const productId = parseInt(req.params.id);
-  products = products.filter(p => p.id !== productId);
-  res.json({ message: 'Product deleted' });
+// DELETE a product by productId
+app.delete('/api/products/productId', async (req, res) => {
+  const productId = req.params.id;
+  
+  try {
+    const deletedProduct = await Product.findOneAndDelete({ productId });
+    if (!deletedProduct) return res.status(404).json({ error: 'Product not found' });
+    res.json({ message: 'Product deleted' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 const PORT = process.env.PORT || 5000;

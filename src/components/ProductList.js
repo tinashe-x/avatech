@@ -1,14 +1,22 @@
-// src/components/ProductList.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const ProductList = ({ product = [] }) => {
+const ProductList = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div>
-      {product.map(p => (
-        <div key={p.id}>
-          <h2>{p.title}</h2>
-          <Link to={`/product/${p.id}`}>View Details</Link>
+      {products.map((product) => (
+        <div key={product.productId}>
+          <h3>{product.title}</h3>
+          <p>{product.description}</p>
+          {/* etc. */}
         </div>
       ))}
     </div>
