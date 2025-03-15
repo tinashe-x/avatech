@@ -6,6 +6,7 @@ import CheckoutPage from './Pages/CheckoutPage';
 import AllProducts from './Pages/AllProducts';
 import ProductDetails from './Pages/ProductDetails';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
+import CartProvider from './contexts/CartContext';
 // import { getProducts } from './services/productService';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   // }, []);
 
   return (
+    <CartProvider>
     <Router>
       <div className="home">
       <Routes>
@@ -33,6 +35,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </CartProvider>
   );
 }
 

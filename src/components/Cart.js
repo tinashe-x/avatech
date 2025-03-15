@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Cart = ({ cartItems, removeFromCart }) => (
+  
   <div>
     {cartItems.map(item => (
       <div key={item.id}>

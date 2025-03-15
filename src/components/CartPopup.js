@@ -10,14 +10,14 @@ const CartPopup = ({ onClose }) => {
   return (
     <div className="cart-popup-overlay" onClick={onClose}>
       <div className="cart-popup" onClick={(e) => e.stopPropagation()}>
-        <h2>Your Cart</h2>
+        <h2>My Cart</h2>
         {cart.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
           <ul>
             {cart.map((item) => (
               <li key={item.id} className="cart-item">
-                <BiCart className="cart-icon" />                <span>{item.title}</span> - <span>${item.price}</span>
+                <BiCart className="cart-icon" />                <span>{item.title}</span> : <span>R{item.price}</span>
                 <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
               </li>
             ))}
