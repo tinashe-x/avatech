@@ -1,7 +1,7 @@
 // src/pages/Checkout.js
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
-import PaymentForm from '../components/PaymentForm';
+
 import '../styles/Checkout.css';
 
 const Checkout = () => {
