@@ -1,4 +1,4 @@
-// src/pages/AllProducts.js
+// src/Pages/AllProducts.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../services/productService';
@@ -43,25 +43,28 @@ const AllProducts = () => {
   return (
     <div>
       <NavBar />
+    <div>
+      <h1 className="all-products-title">Our Products</h1>
       <div className="all-products-container">
         {products.map((product) => (
-            <div key={product.productId} className="product-card">
+          <div key={product.productId} className="product-card">
             <img src={product.image} alt={product.title} className="product-image" />
             <div className="product-details">
-                <h2 className="product-title">{product.title}</h2>
-                <p className="product-description">
+              <h2 className="product-title">{product.title}</h2>
+              <p className="product-description">
                 {product.description.length > 100
-                    ? `${product.description.substring(0, 100)}...`
-                    : product.description}
-                </p>
-                <Link to={`/products/${product.productId}`} className="view-button">
-                View Details
-                </Link>
+                  ? `${product.description.substring(0, 100)}...`
+                  : product.description}
+              </p>
+              <Link to={`/products/${product.productId}`} className="view-button">
+                  Buy Now
+              </Link>
             </div>
-            </div>
-             ))}
-        </div>
+          </div>
+        ))}
+      </div>
       <Footer />
+    </div>
     </div>
   );
 };

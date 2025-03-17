@@ -60,13 +60,14 @@ const ProductDetails = () => {
               <li key={index} className="include-item">{item}</li>
             ))}
           </ul>
+            <button className="back-button" onClick={() => navigate(-1)}>Back to Products</button>
+            <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
         </div>
         <div className="product-image">
           <img src={product.image} alt={product.title} />
         </div>
       </div>
-      <button className="back-button" onClick={() => navigate(-1)}>Back to Products</button>
-      <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
+      
       <Footer />
     </div>
   );
