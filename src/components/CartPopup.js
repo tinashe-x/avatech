@@ -17,12 +17,14 @@ const CartPopup = ({ onClose }) => {
           <ul>
             {cart.map((item) => (
               <li key={item.id} className="cart-item">
-                <BiCart className="cart-icon" />                <span>{item.title}</span> : <span>R{item.price}</span>
+                <BiCart className="cart-icon" />
+                <span>{item.title}</span> : <span>R{item.price}</span>
                 <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
               </li>
             ))}
           </ul>
         )}
+        <button className='checkout-btn' onClick={() => { window.location.href = '/checkout'; }}>Checkout</button>
         <button className="close-btn" onClick={onClose}>Close</button>
       </div>
     </div>

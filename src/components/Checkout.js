@@ -1,7 +1,8 @@
+// src/pages/Checkout.js
 import React from 'react';
 import { useCart } from '../contexts/CartContext';
-import PaymentForm from './PaymentForm';
-import '../styles/Checkout.css'; 
+import PaymentForm from '../components/PaymentForm';
+import '../styles/Checkout.css';
 
 const Checkout = () => {
   const { cart, clearCart } = useCart();
@@ -23,26 +24,21 @@ const Checkout = () => {
     <div className="checkout-container">
       <h1>Checkout</h1>
       <div className="checkout-body">
-      <div className="order-summary">
-        {cart.map(item => (
-          <div key={item.id} className="order-item">
-            <span>{item.name}</span>
-            <span>${item.price}</span>
+        <div className="order-summary">
+          {cart.map((item) => (
+            <div key={item.id} className="order-item">
+              <span>{item.title}</span>
+              <span>R{parseFloat(item.price).toFixed(2)}</span>
+            </div>
+          ))}
+          <hr />
+          <div className="order-total">
+            <strong>Total: R{totalAmount.toFixed(2)}</strong>
           </div>
-        ))}
-        <hr />
-        <div className="order-total">
-          <strong>Total: R{totalAmount.toFixed(2)}</strong>
         </div>
-      </div>
-      <PaymentForm 
-        totalAmount={totalAmount} 
-        onPaymentSuccess={handlePaymentSuccess} 
-        onPaymentError={handlePaymentError} 
-      />
+    
       </div>
     </div>
-
   );
 };
 

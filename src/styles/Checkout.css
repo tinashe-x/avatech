@@ -12,7 +12,7 @@
 
 .checkout-body{
   max-width: 600px;
-  
+  color: #000000;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff; /* Adjust to match your site's background color */
@@ -35,6 +35,7 @@
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
+  text-color: #ffffff;
 }
 
 .order-item span {

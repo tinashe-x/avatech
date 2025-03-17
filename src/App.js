@@ -7,6 +7,7 @@ import AllProducts from './Pages/AllProducts';
 import ProductDetails from './Pages/ProductDetails';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
 import CartProvider from './contexts/CartContext';
+import { ToastContainer } from 'react-toastify';
 // import { getProducts } from './services/productService';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       </div>
     </Router>
     </CartProvider>

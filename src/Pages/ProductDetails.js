@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Preloader from '../components/Preloader';
 import '../styles/ProductDetails.css'; // Ensure this path is correct
 import { useCart } from '../contexts/CartContext';
+import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -16,6 +17,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     addItem(product);
+    toast.success(`${product.title}, has been added to cart!`);
   };
 
   useEffect(() => {
