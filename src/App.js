@@ -8,6 +8,7 @@ import ProductDetails from './Pages/ProductDetails';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
 import CartProvider from './contexts/CartContext';
 import { ToastContainer } from 'react-toastify';
+import PaymentPage from './Pages/PaymentPage';
 // import { getProducts } from './services/productService';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />

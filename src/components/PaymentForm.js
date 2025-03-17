@@ -1,68 +1,66 @@
 import React, { useState } from 'react';
-import { processPayment } from '../services/payfastService';
+import '../styles/PaymentForm.css';
+import Navbar from './NavBar';
+import Footer from './Footer';
 
 const PaymentForm = ({ totalAmount, onPaymentSuccess, onPaymentError }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    // Add more fields as necessary
-  });
-  const [loading, setLoading] = useState(false);
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
 
-  const handleChange = e => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const paymentData = {
-        ...formData,
-        amount: totalAmount,
-        // Include any other required fields by PayFast here
-      };
-      const result = await processPayment(paymentData);
-      setLoading(false);
-      onPaymentSuccess(result);
-    } catch (error) {
-      setLoading(false);
-      onPaymentError(error);
-    }
-  };
+  // Uncomment and implement when integrating payment processing
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Process payment logic here
+  //   // On success: onPaymentSuccess(result);
+  //   // On error: onPaymentError(error);
+  // };
 
   return (
-    <form onSubmit={handleSubmit} className="payment-form">
-      <div>
-        <label>First Name</label>
-        <input name="firstName" value={formData.firstName} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input name="lastName" value={formData.lastName} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Phone</label>
-        <input name="phone" value={formData.phone} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Address</label>
-        <input name="address" value={formData.address} onChange={handleChange} required />
-      </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Processing...' : 'Pay Now'}
-      </button>
-    </form>
+    <div>
+      <Navbar />
+      <form className="payment-form" /* onSubmit={handleSubmit} */>
+        <h2>Payment Details</h2>
+        <div className="form-group">
+          <label htmlFor="cardNumber">Card Number</label>
+          <input
+            type="text"
+            id="cardNumber"
+            name="cardNumber"
+            placeholder="1234 5678 9012 3456"
+            value={cardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="expiryDate">Expiry Date</label>
+          <input
+            type="text"
+            id="expiryDate"
+            name="expiryDate"
+            placeholder="MM/YY"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cvv">CVV</label>
+          <input
+            type="text"
+            id="cvv"
+            name="cvv"
+            placeholder="123"
+            value={cvv}
+            onChange={(e) => setCvv(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Pay Now</button>
+      </form>
+      <Footer />
+    </div>
   );
 };
 
