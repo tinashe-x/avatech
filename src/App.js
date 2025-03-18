@@ -12,16 +12,7 @@ import PaymentPage from './Pages/PaymentPage';
 // import { getProducts } from './services/productService';
 
 function App() {
-
-  // const [product, setProduct] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const data = await getProducts();
-  //     setProduct(data);
-  //   };
-  //   fetchProducts();
-  // }, []);
+  // app.js (in project root)
 
   return (
     <CartProvider>
